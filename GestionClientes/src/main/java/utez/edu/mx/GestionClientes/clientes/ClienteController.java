@@ -34,7 +34,7 @@ public class ClienteController {
         return clienteService.actualizarCliente(cliente);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteByIdCliente(@PathVariable Long id){
         return clienteService.eliminarClienteById(id);
     }

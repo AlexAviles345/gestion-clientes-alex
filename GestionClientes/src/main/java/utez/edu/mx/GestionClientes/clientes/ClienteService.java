@@ -48,6 +48,7 @@ public class ClienteService {
 
     @Transactional(rollbackFor = {SQLException.class, Exception.class})
     public ResponseEntity<?> addCliente(ClienteEntity cliente){
+        body = new HashMap<>();
 
         try {
 
@@ -68,6 +69,7 @@ public class ClienteService {
     @Transactional(rollbackFor = {SQLException.class, Exception.class})
     public ResponseEntity<?> actualizarCliente(ClienteEntity clienteUpdate){
         Optional<ClienteEntity> cliente = clienteRepository.findById(clienteUpdate.getId());
+        body = new HashMap<>();
 
         if(cliente.isPresent()){
             try {
@@ -82,6 +84,10 @@ public class ClienteService {
                 e.printStackTrace();
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
             }
+        }
+        else {
+            body.put("mensaje", "Cliente no encontrado");
+            status = HttpStatus.NOT_FOUND;
         }
 
         return new ResponseEntity<>(body, status);
