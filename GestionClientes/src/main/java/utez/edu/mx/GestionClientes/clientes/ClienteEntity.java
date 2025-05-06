@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "")
+@Table(name = "clientes")
 public class ClienteEntity {
 
     // ATRIBUTOS
