@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cliente")
+@CrossOrigin(origins = {"*"})
 public class ClienteController {
 
     @Autowired
@@ -34,7 +35,7 @@ public class ClienteController {
         return clienteService.actualizarCliente(cliente);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteByIdCliente(@PathVariable Long id){
         return clienteService.eliminarClienteById(id);
     }

@@ -93,14 +93,24 @@ public class ClienteService {
         return new ResponseEntity<>(body, status);
     }
 
-    @Transactional( readOnly = true )
+    @Transactional(rollbackFor = {SQLException.class, Exception.class})
     public ResponseEntity<?> eliminarClienteById(Long id){
         Optional<ClienteEntity> cliente = clienteRepository.findById(id);
         body = new HashMap<>();
 
         if(cliente.isPresent()){
-            body.put("mensaje", "El cliente se ha eliminado correctamente");
-            status = HttpStatus.OK;
+
+            try {
+                clienteRepository.deleteById(id);
+
+                body.put("mensaje", "El cliente se ha eliminado correctamente");
+                status = HttpStatus.OK;
+                System.out.println("HOLAAAA BORRANDO");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            }
         }
         else {
             body.put("mensaje", "Cliente no encontrado");
