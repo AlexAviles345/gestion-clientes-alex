@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ClienteService {
@@ -49,7 +46,7 @@ public class ClienteService {
     @Transactional(rollbackFor = {SQLException.class, Exception.class})
     public ResponseEntity<?> addCliente(ClienteEntity cliente){
         body = new HashMap<>();
-
+        cliente.setCurp(cliente.getCurp().toUpperCase()); // Convierte la curp a mayusculas
         try {
 
             clienteRepository.save(cliente);
@@ -70,6 +67,7 @@ public class ClienteService {
     public ResponseEntity<?> actualizarCliente(ClienteEntity clienteUpdate){
         Optional<ClienteEntity> cliente = clienteRepository.findById(clienteUpdate.getId());
         body = new HashMap<>();
+        clienteUpdate.setCurp(clienteUpdate.getCurp().toUpperCase()); // Convierte la curp a mayusculas
 
         if(cliente.isPresent()){
             try {
