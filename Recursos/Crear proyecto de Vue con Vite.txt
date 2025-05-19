@@ -1,0 +1,14 @@
+--------------------------------------------------------------------
+| 		  Crear proyecto Vue con Vite 		  	   |
+--------------------------------------------------------------------
+
+
+1.- Crear proyecto
+npm create vue@latest
+
+2.- Darle un nombre al proyecto
+
+3.- No confirmar nada en las opciones de instalacion
+
+4.- Una vez creado el proyecto, se deben instalar las dependencias
+npm install
