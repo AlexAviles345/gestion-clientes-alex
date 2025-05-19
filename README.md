@@ -1,6 +1,6 @@
 # gestion-clientes-alex
 
-## Descripcion
+## Descripción
 
 Examen diagnostico de prueba para el CDS. Se hizo un crud pequeño de gestion de clientes que permite crear, eliminar, actualizar clientes, ademas de poder ver uno en particular o la lista completa de clientes.
 
